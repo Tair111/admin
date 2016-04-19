@@ -6,6 +6,14 @@ class DBWork {
         return include __DIR__ . '/../config.php';
     }
 
+    private static $instance;
+
+    public static function Instance() {
+        if (self::$instance == null)
+            self::$instance = new DBWork();
+        return self::$instance;
+    }
+
     public function __construct () {
         $config = $this->config();
 
