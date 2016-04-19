@@ -52,9 +52,10 @@ class DBWork {
     {
         global $link;
         $result = mysqli_query($link, $sql);
-        $n = mysqli_affected_rows($link);
-        if($n === 1)
-            return true;
+        $rez = mysqli_affected_rows($link);
+        $num = mysqli_insert_id($link);
+        if($rez === 1)
+            return $num;
         else
             return false;
     }
