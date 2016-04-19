@@ -14,13 +14,21 @@ class Sites
         return $this->db->DBQuery("SELECT * FROM sites");
     }
 
-    public function Sites_setOne($Name)
+    public function Sites_setOne($name)
     {
-        $this->db->DBQueryExecut("INSERT INTO sites (Name) VALUE ('$Name')");
+        $this->db->DBQueryExecut("INSERT INTO sites (name) VALUE ('$name')");
     }
 
-    public function Sites_deleteOne($ID)
+    public function Pages_setOne($url, $site_id)
     {
-        $this->db->DBQueryExecut("DELETE FROM sites WHERE ID = " . $ID);
+        var_dump($url);
+        var_dump($site_id);
+        $a = $this->db->DBQueryExecut("INSERT INTO pages (url) VALUE  ('$url')");
+        var_dump($a);
+    }
+
+    public function Sites_deleteOne($id)
+    {
+        $this->db->DBQueryExecut("DELETE FROM sites WHERE id = " . $id);
     }
 }
