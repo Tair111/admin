@@ -1,3 +1,11 @@
+<?/*
+Шаблон страницы управления справочником личностей
+=======================
+
+$persons - массив строк личностей
+
+*/?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +14,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="view/style.css" />
 </head>
 <body>
-<h1>Интерфейс администратора</h1>
+<h1><?php echo "$title"; ?></h1>
 <br/>
+<?php 
+if(isset($user)){
+    echo 'Привет, '.$user['username'].'.<br/><br/><a href="index.php?r=user/logout">Выход</a>';
+}else{
+    echo '<a href="index.php?r=user/login">Вход</a>'; }
+?> |
 <a href="../../web-interface/ui/php/index.php?c=statistic&act=general_statistics">Панель пользователя</a> |
 <a href="index.php?r=admin/sites">Справочник сайтов</a> |
 <a href="index.php?r=admin/persons">Справочник личностей</a> |
@@ -27,19 +41,19 @@
             <td colspan="2">Действие</td>
         </tr>
         <?php foreach ($persons as $person): ?>
-        <tr>
-            <td>
-                <article>
+            <tr>
+                <td>
+                    <article>
                         <?=$person['name'];?>
-                </article>
-            </td>
-            <td width="100">
-                <a href="index.php?r=admin/persons&id=<?=$person['id']?>">Удалить</a>
-            </td>
-            <td>
-                <a href="index.php?r=admin/keywords&person_id=<?=$person['id']?>">Задать набор искомых слов</a>
-            </td>
-        </tr>
+                    </article>
+                </td>
+                <td width="100">
+                    <a href="index.php?r=admin/persons&id=<?=$person['id']?>">Удалить</a>
+                </td>
+                <td>
+                    <a href="index.php?r=admin/keywords&person_id=<?=$person['id']?>">Задать набор искомых слов</a>
+                </td>
+            </tr>
         <?php endforeach; ?>
     </table>
 </form>
